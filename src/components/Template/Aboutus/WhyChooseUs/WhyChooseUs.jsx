@@ -35,7 +35,7 @@ function WhyChooseUs() {
                </ul>
             </div>
             <div className="why-choose-us-img">
-                <img src="/src/assets/images/about4_900x.webp" alt="" />
+                <img src="assets/images/about4_900x.webp" alt="" />
             </div>
           </div>
     </div>

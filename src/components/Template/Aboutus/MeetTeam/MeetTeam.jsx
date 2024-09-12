@@ -15,7 +15,7 @@ function MeetTeam() {
         <Card sx={{ maxWidth: 345, width: "100%" }}>
           <CardMedia
             sx={{ height: 240 }}
-            image="/src/assets/images/images.jfif"
+            image="/assets/images/images.jfif"
             title="green iguana"
           />
           <CardContent className="flex flex-col justify-center text-center">
@@ -46,7 +46,7 @@ function MeetTeam() {
         <Card sx={{ maxWidth: 345, width: "100%" }}>
           <CardMedia
             sx={{ height: 240 }}
-            image="/src/assets/images/images.jfif"
+            image="/assets/images/images.jfif"
             title="green iguana"
           />
           <CardContent className="text-center">
@@ -77,7 +77,7 @@ function MeetTeam() {
         <Card sx={{ maxWidth: 345, width: "100%" }}>
           <CardMedia
             sx={{ height: 240 }}
-            image="/src/assets/images/images.jfif"
+            image="/assets/images/images.jfif"
             title="green iguana"
           />
           <CardContent className="text-center">
@@ -108,7 +108,7 @@ function MeetTeam() {
         <Card sx={{ maxWidth: 345, width: "100%" }}>
           <CardMedia
             sx={{ height: 240 }}
-            image="/src/assets/images/images.jfif"
+            image="/assets/images/images.jfif"
             title="green iguana"
           />
           <CardContent className="text-center">
