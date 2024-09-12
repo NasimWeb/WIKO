@@ -1,7 +1,7 @@
 
 @font-face {
   font-family: 'vazir';
-  src: url(./assets/fonts/Vazir-Light.woff);
+  src: url(/assets/fonts/Vazir-Light.woff);
 }
 
 body {

@@ -66,8 +66,8 @@ function Index() {
                 <img
                   src={
                     collapsed
-                      ? "/src/assets/images/Screenshot 2024-07-13 142957.png"
-                      : "/src/assets/images/logo.svg"
+                      ? "assets/images/Screenshot 2024-07-13 142957.png"
+                      : "assets/logo.svg"
                   }
                   className={`${collapsed ? "w-12 pl-5" : " w-16"}`}
                   alt=""
@@ -219,7 +219,7 @@ function Index() {
             <div className="flex items-center mr-6">
               <div className="profile flex items-center gap-3">
                 <img
-                  src="/src/assets/images/thumb-1.jpg"
+                  src="/assets/images/thumb-1.jpg"
                   className="rounded-full"
                   style={{ width: "40px" }}
                   alt=""
