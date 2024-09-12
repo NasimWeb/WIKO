@@ -38,7 +38,7 @@ function ProductGallery() {
   }, []);
 
   async function mainProduct() {
-    await fetch(`http://127.0.0.1:8000/content/product/${productSlug}/`).then(
+    await fetch(`https://wiko.pythonanywhere.com/content/product/${productSlug}/`).then(
       (res) => {
         if (res.ok) {
           return res.json().then((data) => {
@@ -90,7 +90,7 @@ function ProductGallery() {
       formData.append("image", file.originFileObj);
     });
 
-   await fetch(`http://127.0.0.1:8000/panel/add/galery/product/${productId}/`, {
+   await fetch(`https://wiko.pythonanywhere.com/panel/add/galery/product/${productId}/`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -124,7 +124,7 @@ function ProductGallery() {
   const deleteGalleryFile = async (file) => {
     setLoading(true);
     await fetch(
-      `http://127.0.0.1:8000/panel/delete/galery/product/${file.uid}`,
+      `https://wiko.pythonanywhere.com/panel/delete/galery/product/${file.uid}`,
       {
         method: "DELETE",
         headers: {

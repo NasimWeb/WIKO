@@ -16,11 +16,11 @@ import {
 } from "@ant-design/icons";
 import { Space } from "antd";
 import checkMediaType from "../../../../Hooks/cheackMediaType";
-import { useEffect } from "react";
+
 
 function Stories() {
   const fetchStories = async () => {
-    const res = await fetch("http://127.0.0.1:8000/options/storys/");
+    const res = await fetch("https://wiko.pythonanywhere.com/options/storys/");
     const result = await res.json().then((data) => data);
     return result;
   };

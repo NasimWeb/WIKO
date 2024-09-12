@@ -67,7 +67,7 @@ function EditGallery() {
     })
 
 
-    await fetch(`http://127.0.0.1:8000/panel/update/galery/product/${galleryId}/`,{
+    await fetch(`https://wiko.pythonanywhere.com/panel/update/galery/product/${galleryId}/`,{
       method: 'PUT',
       headers : {
         Authorization : `Bearer ${localStorage.getItem('accessToken')}`

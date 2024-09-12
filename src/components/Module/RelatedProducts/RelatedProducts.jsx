@@ -15,7 +15,7 @@ function RelatedProducts({productSlug}) {
     
   useEffect(() => {
     async function fetchData() {
-      await fetch(`http://127.0.0.1:8000/content/related/products/${productSlug}/`).then(res => res.json()).then(result => setSimilarProducts(result))
+      await fetch(`https://wiko.pythonanywhere.com/content/related/products/${productSlug}/`).then(res => res.json()).then(result => setSimilarProducts(result))
     }
     fetchData();
   }, []);
