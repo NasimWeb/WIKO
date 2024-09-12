@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -13,6 +13,8 @@ import { Modal } from "antd";
 function Login() {
   const {  setIsLogedin, setUserInfo, userInfo } =
     useContext(authContext);
+
+    const navigate = useNavigate()
 
   const {
     register,
@@ -54,10 +56,11 @@ function Login() {
             localStorage.setItem("userInfo", JSON.stringify(decodedToken));
             localStorage.setItem("accessToken", data.access);
             localStorage.setItem("refreshToken", data.refresh);
-            // login(data.access, data.refresh);
+            navigate('/')
            return Modal.success({
             content: "شما با موفقیت لاگین شدید",
            })
+           
           });
         }
       });
@@ -111,11 +114,10 @@ function Login() {
               setIsLogedin(true);
               localStorage.setItem("accessToken", result.access);
               localStorage.setItem("refreshToken", result.refresh);
-              
-              // login(result.access, result.refresh);
               Modal.success({
                 content: "ثبت نام با موفقیت انجام شد",
               })
+              navigate('/')
             });
           } else if (res.status === 400) {
             return res.text().then(() => {

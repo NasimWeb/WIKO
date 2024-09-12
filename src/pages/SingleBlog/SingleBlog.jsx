@@ -4,8 +4,8 @@ import "./SingleBlog.css";
 import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
 import extractPlainText from "../../Hooks/extractPlainText";
-import { getAccessToken } from "../../Funcs/getCookie";
-import getTokenLocal from "../../Funcs/getTokenLocal";
+
+
 
 function SingleBlog() {
   const [allBlog, setAllBlog] = useState([]);
@@ -16,7 +16,7 @@ function SingleBlog() {
   const { blogTitle } = useParams();
 
   const allBlogs = async () => {
-    await fetch("http://127.0.0.1:8000/content/blogs").then((res) => {
+    await fetch("https://wiko.pythonanywhere.com/content/blogs").then((res) => {
       if (res.ok) {
         res.json().then((data) => {
           setAllBlog(data);
@@ -36,8 +36,9 @@ function SingleBlog() {
 
 
 
+
   const fetchTags = async () => {
-    await fetch("http://127.0.0.1:8000/panel/tags/", {
+    await fetch("https://wiko.pythonanywhere.com/panel/tags/", {
       method: "GET",
     }).then((res) => {
       if (res.ok) {

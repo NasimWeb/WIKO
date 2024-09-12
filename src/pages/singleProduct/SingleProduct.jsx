@@ -27,7 +27,7 @@ function SingleProduct() {
 
   async function fetchData() {
     const response = await fetch(
-      `http://127.0.0.1:8000/content/product/${productSlug}`
+      `https://wiko.pythonanywhere.com/content/product/${productSlug}`
     );
     if (response.ok) {
       const data = await response.json();
@@ -79,7 +79,7 @@ function SingleProduct() {
     event.preventDefault();
 
     await fetch(
-      `http://127.0.0.1:8000/options/add/comment/${mainProduct?.id}/`,
+      `https://wiko.pythonanywhere.com/options/add/comment/${mainProduct?.id}/`,
       {
         method: "POST",
         headers: {
@@ -101,7 +101,7 @@ function SingleProduct() {
   };
 
   const fetchComments = async () => {
-    await fetch("http://127.0.0.1:8000/panel/comments/", {
+    await fetch("https://wiko.pythonanywhere.com/panel/comments/", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -120,13 +120,14 @@ function SingleProduct() {
 
   useQuery("Comments", fetchComments);
 
-  console.log(comments);
+ 
+  
   
 
   return (
     <>
       <PagesHeader
-        currentRoute={productSlug}
+        currentRoute={data?.title}
         prevRoute={"محصولات"}
         prevRouteLink="/products"
       />
