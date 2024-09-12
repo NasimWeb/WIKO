@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import authContext from "../../../Contexts/authContext";
 import basketCart from "../../../Contexts/basketCartContext";
+import logo from '/assets/logo.svg';
 
 function Navbar() {
   const navbar = useRef();
@@ -86,7 +87,7 @@ function Navbar() {
               <img
                 style={{ width: "60px", height: "60px" }}
                 className="max-w-full h-auto	"
-                src="/../src/assets/images/logo.svg"
+                src={logo}
                 alt=""
               />
             </Link>
