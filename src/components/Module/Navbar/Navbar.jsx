@@ -181,7 +181,7 @@ function Navbar() {
                             : ""}
                         </div>
                         <img
-                          src="/src/assets/images/accessories-home-3.jpg"
+                          src="assets/images/accessories-home-3.jpg"
                           alt=""
                         />
                       </div>
