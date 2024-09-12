@@ -8,7 +8,9 @@ body {
   font-family: 'vazir';
   font-size: 13px;
 }
-
+.ant-layout {
+  /* height: 100vh; */
+}
 a {
   transition: all .35s ease;
   color: #666666;

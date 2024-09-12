@@ -16,7 +16,7 @@ function checkMediaType(mediaUrl) {
     const extension = fileName.split('.').pop().toLowerCase();
 
     // بررسی نوع مدیا بر اساس پسوند
-    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg'];
+    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg','webp'];
     const videoExtensions = ['mp4', 'mov', 'avi', 'mkv', 'flv', 'wmv'];
     
     if (imageExtensions.includes(extension)) {
