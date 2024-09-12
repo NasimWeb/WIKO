@@ -63,7 +63,7 @@ function Footer() {
           <div className="details flex flex-col gap-5">
             <img
               style={{ width: "60px", height: "60px" }}
-              src="/../src/assets/images/logo.svg"
+              src="/assets/logo.svg"
               alt=""
             />
             <div className="address flex gap-2">

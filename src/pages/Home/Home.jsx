@@ -29,13 +29,13 @@ function Home() {
         modules={[Autoplay]}
       >
         <SwiperSlide className="flex justify-center">
-          <img src="./src/assets/images/cbcfeae4440e92ddd7e6ed2eb9ced401.jpg"  className="w-full" alt="" />
+          <img src="assets/images/cbcfeae4440e92ddd7e6ed2eb9ced401.jpg"  className="w-full" alt="" />
         </SwiperSlide>
         <SwiperSlide className="flex justify-center">
-          <img src="./src/assets/images/a1a233bab70f0501dc9f7ed754406954.jpg"  className="w-full" alt="" />
+          <img src="assets/images/a1a233bab70f0501dc9f7ed754406954.jpg"  className="w-full" alt="" />
         </SwiperSlide>
         <SwiperSlide className="flex justify-center">
-          <img src="./src/assets/images/01bc06252e2175b0b4ad4225f5300b96.jpg"  className="w-full" alt="" />
+          <img src="assets/images/01bc06252e2175b0b4ad4225f5300b96.jpg"  className="w-full" alt="" />
         </SwiperSlide>
       </Swiper>
       <Features />

@@ -7,7 +7,7 @@ function Advertisment() {
       <div className="effectFour relative">
         <Link href="/" className='flex justify-center'>
           <img
-            src="./src/assets/images/original-77b5fc543a1d9235b36fdf372bd9dba9.jpg"
+            src="/assets/images/original-77b5fc543a1d9235b36fdf372bd9dba9.jpg"
             alt=""
             style={{width:'700px' , maxWidth: '100%'}}
           />
