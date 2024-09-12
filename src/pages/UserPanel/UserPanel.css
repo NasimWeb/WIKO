@@ -1,0 +1,6 @@
+.item.active {
+    color: #fff;
+    background-color: var(--color-primary );
+    border-radius: 7px;
+    padding: 7px;
+}

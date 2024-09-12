@@ -1,0 +1,15 @@
+.features {
+    text-align: center;
+    border: 2px dotted #cecece;
+    padding: 25px 15px 30px;
+}
+
+.featuretitle {
+    color: #333333 !important;
+    font-weight: 800 !important;
+}
+
+.featuredesc {
+    color: #666666 !important;
+    
+}

@@ -1,0 +1,33 @@
+.bg-login-panel {
+  background-image: url(../../../assets/images/img-17.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  align-content: center;
+}
+
+.form-container {
+  background-color: #fff;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 100%;
+  padding: 60px;
+  padding-inline: 50px;
+  -webkit-box-shadow: 0px 4px 30px -16px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 0px 4px 30px -16px rgba(66, 68, 90, 1);
+  box-shadow: 0px 4px 30px -16px rgba(66, 68, 90, 1);
+}
+
+
+.text-red {
+  color: #ff6b72;
+}
+
+.text-blue {
+  color: #3e79f7;
+}
+.ant-form-item-row {
+  display: flex;
+  flex-direction: column;
+}
+

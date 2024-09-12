@@ -1,0 +1,17 @@
+.bg-header-page {
+    background-image: url(../../../assets/images/bandeau-access-2021-desktop.jpg);
+    height: 155px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header-page {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   width: 100%;
+   height: 100%;
+   margin: auto;
+}

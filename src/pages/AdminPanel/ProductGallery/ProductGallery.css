@@ -1,0 +1,23 @@
+/* :where(.css-dev-only-do-not-override-98ntnt).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture .ant-upload-list-item-error, :where(.css-dev-only-do-not-override-98ntnt).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture-card .ant-upload-list-item-error, :where(.css-dev-only-do-not-override-98ntnt).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture-circle .ant-upload-list-item-error {
+    border-color:
+    #d9d9d9 !important;
+} */
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; 
+  }
+  
+  .hidden {
+    display: none;
+  }
+

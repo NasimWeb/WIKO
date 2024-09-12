@@ -1,0 +1,11 @@
+.bg-why {
+    background-color: #5A9CB0;
+}
+
+.why-choose-us-content svg{
+    font-size: 45px !important;
+}
+
+.why-choose-us-content p , .why-choose-us-content li {
+    text-align: right;
+}

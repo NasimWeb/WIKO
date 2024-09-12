@@ -1,0 +1,19 @@
+
+.effectFour a:hover:before {
+  background: #ffffff80 none repeat scroll 0 0;
+  left: 50%;
+  right: 50%;
+}
+
+.effectFour a:before,
+.effectFour a:after {
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: all 0.9s ease 0s;
+}
+
+

@@ -1,0 +1,32 @@
+footer h4 {
+   color: #666666;
+}
+
+footer i  {
+    color: #999;
+}
+
+footer a:hover i {
+    color: var(--color-primary) !important;
+} 
+
+.bullet-media {
+    border-radius: 100%;
+    border: 2px solid #999;
+    padding: 5px;
+}
+
+.fa-paper-plane {
+    transition: all .35s ease;
+    cursor: pointer;
+    color: var(--color-primary);
+}
+
+footer a:hover  {
+    color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+}
+
+.bullet-media {
+    font-size: 1rem;
+}

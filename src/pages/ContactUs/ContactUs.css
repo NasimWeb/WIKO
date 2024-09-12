@@ -1,0 +1,18 @@
+.btn-contact {
+    background-color: transparent !important;
+    color: #000 !important;
+    border:1px solid #e1e1e1 !important;
+}
+
+.btn-contact:hover {
+    color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+}
+
+.form-text-area {
+    height: 130px !important;
+}
+
+.form-control.error  {
+    border: 1px solid #ff0000 !important;
+}

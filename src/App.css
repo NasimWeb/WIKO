@@ -1,0 +1,77 @@
+
+@font-face {
+  font-family: 'vazir';
+  src: url(./assets/fonts/Vazir-Light.woff);
+}
+
+body {
+  font-family: 'vazir';
+  font-size: 13px;
+}
+
+a {
+  transition: all .35s ease;
+  color: #666666;
+}
+
+img {
+  max-height:  100% !important;
+}
+
+/* a:hover {
+ color: var(--color-primary);
+} */
+
+:root {
+  --color-primary : #00b2a9;
+}
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-btn-text:not(:disabled):not(.ant-btn-disabled):hover {
+  /* color: rgba(0, 0, 0, 0.88); */
+  background: transparent !important 
+}
+
+/* loader */
+
+/* From Uiverse.io by Yaya12085 */ 
+.loader ,.loader::before,.loader::after {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 10px;
+  animation: rotate 5s linear infinite;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-color: #0d009b;
+}
+
+.loader::before,.loader::after {
+  position: absolute;
+  content: "";
+}
+
+.loader::before {
+  border-color: var(--color-primary);
+  width: 110%;
+  height: 110%;
+  animation-delay: .5s
+}
+
+.loader::after {
+  border-color: #407ffc;
+  width: 120%;
+  height: 120%;
+  animation-delay: .10s;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg)
+  }
+}

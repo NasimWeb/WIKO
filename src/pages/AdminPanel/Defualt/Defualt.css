@@ -1,0 +1,19 @@
+.custom-grid {
+    gap: 1rem; /* فاصله بین ستون‌ها */
+    grid-template-columns: 100% /* ستون‌های کوچکتر برای موبایل */
+}
+
+@media (max-width: 768px) {
+    .custom-grid {
+        gap: 0.5rem; /* کاهش فاصله برای صفحه نمایش کوچکتر */
+    }
+}
+
+@media (min-width: 1200px) {
+    .custom-grid {
+        grid-template-columns: minmax(500px ,1fr) minmax(600px , 1fr);
+    }
+}
+
+
+

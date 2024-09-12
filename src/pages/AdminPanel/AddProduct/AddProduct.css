@@ -1,0 +1,11 @@
+.ck.ck-reset.ck-editor.ck-rounded-corners {
+    width: 100% !important;
+}
+
+.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred  {
+    min-height: 200px !important;
+}
+
+.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-focused {
+    min-height: 200px !important;
+}

@@ -1,0 +1,46 @@
+.collectionButtonDetail a {
+    display: inline-block;
+    padding: 8px 28px;
+    color: #333;
+    background-color: transparent;
+    border: 1px solid #333333;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    -webkit-transition: all .35s ease;
+    -o-transition: all .35s ease;
+    transition: all .35s ease;
+}
+
+.custom-btn {
+    display: inline-block;
+    padding: 8px 28px;
+    color: #333;
+    background-color: transparent;
+    border: 1px solid #333333;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    -webkit-transition: all .35s ease;
+    -o-transition: all .35s ease;
+    transition: all .35s ease;
+}
+
+.custom-btn:hover, .custom-btn:focus{
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: #fff !important;
+}
+
+
+
+.collectionButtonDetail a:hover, .collectionButtonDetail a:focus {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: #fff !important;
+}
+
+.collection-img {
+    display: flex;
+    justify-content: center;
+}

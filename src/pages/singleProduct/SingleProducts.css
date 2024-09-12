@@ -1,0 +1,30 @@
+.product-price {
+    color: var(--color-primary);
+}
+
+.tabs {
+    direction: rtl;
+}
+
+
+.products-tabs.active {
+    color: var(--color-primary);
+}
+
+
+.products-tabs.active::after {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    bottom: -6px;
+    content: "";
+    height: 2px;
+    width: 20px;
+    background-color: var(--color-primary);
+}
+
+
+.tabs-content {
+    height: fit-content;
+    text-align: end;
+}
