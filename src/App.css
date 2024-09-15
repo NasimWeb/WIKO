@@ -18,6 +18,10 @@ img {
   max-height:  100% !important;
 }
 
+.ant-layout-content {
+  overflow-y: auto !important;
+}
+
 /* a:hover {
  color: var(--color-primary);
 } */
