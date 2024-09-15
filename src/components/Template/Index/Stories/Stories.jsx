@@ -139,13 +139,13 @@ function Stories() {
                               ),
                               toolbarRender: () => null,
                             }}
-                            src={item.media}
+                            src='/assets/images/av0paekdv.webp'
                           />
                         )}
                         {/* <img
                           className="w-full inline-block "
                           // src="https://picsum.photos/200/300"
-                          src={item.media}
+                          src='/assets/images/Annotate-video-header-1200x675.jpg'
                           alt="story"
                         /> */}
                       </div>
