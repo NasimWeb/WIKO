@@ -33,6 +33,27 @@ function RelatedProducts({productSlug}) {
         slidesPerView={4}
         navigation={true}
         modules={[Navigation]}
+        breakpoints={{
+          300 : {
+            slidesPerView : 1,
+            spaceBetween : 5
+          },
+          // برای صفحه‌های بزرگتر از 640 پیکسل
+          640: {
+            slidesPerView: 2,  // دو اسلاید در یک لحظه نمایش داده شوند
+            spaceBetween: 20,  // فاصله بین اسلایدها
+          },
+          // برای صفحه‌های بزرگتر از 768 پیکسل
+          768: {
+            slidesPerView: 3,  
+            spaceBetween: 30,  
+          },
+          // برای صفحه‌های بزرگتر از 1024 پیکسل
+          1024: {
+            slidesPerView: 4,  
+            spaceBetween: 40,  
+          },
+        }}
       >
         {
          similarProducts && similarProducts.map(product => {

@@ -11,6 +11,17 @@
     color: var(--color-primary);
 }
 
+.mySwiper {
+    width: 100%;
+    height: auto;
+  }
+
+  .mySwiper img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
 
 .products-tabs.active::after {
     position: absolute;

@@ -134,9 +134,19 @@ function Navbar() {
                 <li>
                   <Link to="/blog">بلاگ</Link>
                 </li>
+                {
+                  isLogedin ? (
+                    <li>
+                      <Link to={`/userPanel/${
+                            JSON.parse(localStorage.getItem("userInfo"))?.user_id
+                          }`}>پنل کاربری</Link>
+                    </li>
+                  ) : (
                 <li>
                   <Link to="/login">ثبت نام / لاگین</Link>
                 </li>
+                  )
+                }
                 <li>
 
                 <Link  to={"/products"}>

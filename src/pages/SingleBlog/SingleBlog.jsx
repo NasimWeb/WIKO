@@ -72,7 +72,7 @@ function SingleBlog() {
     <>
       <PagesHeader currentRoute={mainBlog?.title} prevRoute={'بلاگ'}  bg={'/assets/images/bandeau-access-2021-desktop.jpg'} prevRouteLink={'/blog'}/>
       <div className="container mx-auto px-10 my-20">
-        <div className="grid xl:grid-cols-blog gap-10">
+        <div className="grid grid-cols-1 xl:grid-cols-blog gap-10">
           <div className="contant">
             <div>
               <img className="w-full h-auto" src={mainBlog?.image} alt="" />

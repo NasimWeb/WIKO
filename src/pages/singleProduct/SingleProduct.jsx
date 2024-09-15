@@ -8,15 +8,15 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import "swiper/css/zoom";
 import extractPlainText from "../../Hooks/extractPlainText";
-import { Modal } from "antd";
+import { Alert, Modal } from "antd";
 
 import { FreeMode, Navigation, Thumbs, Zoom } from "swiper/modules";
 import { useQuery, useQueryClient } from "react-query";
 import basketCart from "../../Contexts/basketCartContext";
 import { setCookie } from "../../Funcs/setCookie";
 import { CommentOutlined, UserOutlined } from "@ant-design/icons";
+import authContext from "../../Contexts/authContext";
 
 function SingleProduct() {
   const { productSlug } = useParams();
@@ -120,7 +120,7 @@ function SingleProduct() {
   useQuery("Comments", fetchComments);
 
  
- 
+   const {isLogedin} = useContext(authContext)
   
   
 
@@ -133,7 +133,7 @@ function SingleProduct() {
         bg={'/assets/images/bandeau-access-2021-desktop.jpg'}
       />
       <div className="container mx-auto px-5">
-        <div className="grid lg:grid-cols-2 gap-3 my-10">
+        <div className="grid grid-cols-1  lg:grid-cols-[400px_minmax(900px,_1fr)] gap-3 my-10">
           <div>
             <Swiper
               style={{
@@ -148,12 +148,13 @@ function SingleProduct() {
               }}
               modules={[FreeMode, Navigation, Thumbs]}
               className="mySwiper2"
+             
             >
-              {mainProduct.galerys?.map((galery) => {
+              {mainProduct.galerys?.map((galery , index) => {
                 return (
-                  <SwiperSlide key={galery.id}>
-                    <div className="swiper-zoom-container">
-                      <img src={galery.image} style={{width : '400px', maxWidth : '100%'}}/>
+                  <SwiperSlide key={index}>
+                    <div>
+                      <img src={galery.image} style={{ maxWidth : '100%'}}/>
                     </div>
                   </SwiperSlide>
                 );
@@ -172,7 +173,7 @@ function SingleProduct() {
               {mainProduct.galerys?.map((galery) => {
                 return (
                   <SwiperSlide key={galery.id}>
-                    <div className="swiper-zoom-container">
+                    <div>
                       <img src={galery.image} />
                     </div>
                   </SwiperSlide>
@@ -272,6 +273,8 @@ function SingleProduct() {
         <div className="tabs-content mt-5 py-5">
           {extractPlainText(mainProduct?.body)}
         </div>
+        {
+          isLogedin ? (
         <div className="comments text-right">
           <h1 className="text-bold text-2xl">نظر خود را بنویسید</h1>
           <form className="flex flex-col gap-5 my-10" onSubmit={SendComment}>
@@ -315,6 +318,11 @@ function SingleProduct() {
             })}
           </div>
         </div>
+
+          ) : (
+              <Alert message="لطفا اول ثبت نام کنید و سپس مجاز به کامنت گذاشتن هستید" type="warning" />
+          )
+        }
         <hr />
       </div>
       <RelatedProducts productSlug={productSlug} />

@@ -1,7 +1,12 @@
+import { useContext } from "react";
 import "./Footer.css";
 import { Link } from "react-router-dom";
+import authContext from "../../../Contexts/authContext";
 
 function Footer() {
+
+  const {isLogedin} = useContext(authContext)
+
   return (
     <footer style={{ background: "#F5F5F5" }}>
       <div className="container mx-auto px-20">
@@ -44,12 +49,19 @@ function Footer() {
           <div className="flex justify-center flex-col lg:text-center">
             <h4 className="font-bold">لینک های مفید</h4>
             <ul className="mt-5">
-              <Link to={"/login"}>
-                <li>ورود</li>
-              </Link>
-              <Link to={"/login"}>
-                <li>ثبت نام</li>
-              </Link>
+            {
+                  isLogedin ? (
+                    <li>
+                      <Link to={`/userPanel/${
+                            JSON.parse(localStorage.getItem("userInfo"))?.user_id
+                          }`}>پنل کاربری</Link>
+                    </li>
+                  ) : (
+                <li>
+                  <Link to="/login">ثبت نام / لاگین</Link>
+                </li>
+                  )
+                }
               <Link to={"/products"}>
                 <li>محصولات</li>
               </Link>

@@ -17,7 +17,6 @@ function Analytic() {
 
   const { data } = useQuery("productsView", fetchViews);
 
-  
 
   const { Column, ColumnGroup } = Table;
 
