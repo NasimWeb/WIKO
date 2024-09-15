@@ -6,6 +6,10 @@ import { useMutation } from "react-query";
 function AddMenu() {
   const [title, setTitle] = useState();
   const [link, setLink] = useState();
+  const [hasSubMenus, setHasSubMenu] = useState(false);
+
+  
+  
 
   const navigate = useNavigate();
 
@@ -19,6 +23,7 @@ function AddMenu() {
       body: JSON.stringify({
         title: title,
         link: link,
+        sub_menu : hasSubMenus
       }),
     }).then((res) => {
       if (res.ok) {
@@ -71,6 +76,17 @@ function AddMenu() {
                       value={link}
                       onChange={(e) => setLink(e.target.value)}
                     />
+                  </div>
+                </Form.Item>
+              </Col>
+             
+            </Row>
+            <Row className="mt-5">
+            <Col span={11}>
+                <Form.Item>
+                  <div className="flex items-center gap-2">
+                    <label htmlFor="title">HasSubmenu</label>
+                    <input value={hasSubMenus} onChange={e => setHasSubMenu(e.target.checked)} type="checkbox" name="" id="" />
                   </div>
                 </Form.Item>
               </Col>

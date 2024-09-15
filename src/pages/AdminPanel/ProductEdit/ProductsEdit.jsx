@@ -33,9 +33,7 @@ function ProductsEdit() {
     setSelectedCategory(value);
   };
 
-  useEffect(() => {
-    console.log(selectedCategory);
-  }, [selectedCategory]);
+
 
   useEffect(() => {
     async function fetchData() {
@@ -145,6 +143,7 @@ function ProductsEdit() {
     },
     beforeUpload: (file) => {
       setFileList([file]);
+      setProductImg(file);
       return false;
     },
     fileList,

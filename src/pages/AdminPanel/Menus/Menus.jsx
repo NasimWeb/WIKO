@@ -6,12 +6,17 @@ import { Link } from "react-router-dom";
 
 
 function Menus() {
+
+
+  const [initLoading, setInitLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [list, setList] = useState([]);
+
+
   const fetchMenus = async () => {
     await fetch("https://wiko.pythonanywhere.com/content/navbar/", {
       method: "GET",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-      },
     }).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
@@ -28,11 +33,11 @@ function Menus() {
 
   const { refetch } = useQuery("Menus", fetchMenus);
 
-  const [initLoading, setInitLoading] = useState(true);
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
-  const [list, setList] = useState([]);
+  
+  console.log(list);
+  
 
+  
   const onLoadMore = () => {
     setLoading(true);
     setList(
@@ -115,7 +120,7 @@ function Menus() {
                 <Link
                   to={""}
                   key="list-loadmore-more"
-                  // onClick={() => deleteProduct(item.id)}
+                  
                 >
                   <DeleteOutlined
                     twoToneColor="#eb2f96"
@@ -133,6 +138,7 @@ function Menus() {
                   description=""
                 />
                 <List.Item.Meta title={"link"} description={item.link} />
+                <List.Item.Meta title={"hasSubmenu"} description={item.sub_menu.toString()} />
               </Skeleton>
             </List.Item>
           )}

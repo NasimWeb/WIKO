@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 import authContext from "../../Contexts/authContext";
 import parseJwt from "../../Hooks/jwtParseToken";
 import PagesHeader from "../../components/Module/PagesHeader/PagesHeader";
-import { Modal } from "antd";
+import { Col, Modal, Row } from "antd";
 // import PagesHeader from "../../components/Module/PagesHeader/PagesHeader";
 
 
@@ -148,14 +148,17 @@ function Login() {
 
   return (
     <>
-      <PagesHeader currentRoute={"ورود"} />
-      <div className="container mx-auto px-48">
+      <PagesHeader currentRoute={"ورود"} bg={'/assets/images/bandeau-access-2021-desktop.jpg'}/>
+      <div className="container mx-auto ">
         <ToastContainer theme="dark" autoClose={2000} />
         <div
           className="flex justify-center items-center"
           style={{ paddingBlock: "60px" }}
         >
-          <div className="form-container">
+          <Row>
+             <Col span={24}>
+             
+          <div className="form-container-login">
             <div className="tabs mb-5">
               <ul className="flex ">
                 <li
@@ -199,10 +202,10 @@ function Login() {
                   className="flex flex-col gap-5"
                   onSubmit={handleSubmit(registerUser)}
                 >
-                  <div className="flex flex-wrap gap-5">
+                  
                     <div className="flex flex-col gap-2">
                       <input
-                        className="form-control form-control-sm text-bold"
+                        className="form-control  text-bold"
                         {...register("username", { required: true })}
                         type="text"
                         placeholder=" نام کاربری*"
@@ -218,7 +221,7 @@ function Login() {
                     </div>
                     <div className="flex flex-col gap-2">
                       <input
-                        className="form-control form-control-sm text-bold"
+                        className="form-control  text-bold"
                         {...register("phone", { required: true })}
                         type="text"
                         placeholder="  شماره تماس*"
@@ -232,7 +235,7 @@ function Login() {
                         </span>
                       )}
                     </div>
-                  </div>
+                  
                   <div className="flex flex-col gap-2">
                     <input
                       className="form-control  text-bold"
@@ -320,6 +323,9 @@ function Login() {
               )}
             </div>
           </div>
+             </Col>
+
+          </Row>
         </div>
       </div>
     </>

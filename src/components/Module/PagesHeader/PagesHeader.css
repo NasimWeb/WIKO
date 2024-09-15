@@ -1,6 +1,6 @@
 .bg-header-page {
-    background-image: url(../../../assets/images/bandeau-access-2021-desktop.jpg);
-    height: 155px;
+    /* background-image: url(/assets/images/bandeau-access-2021-desktop.jpg); */
+    height: 255px;
     background-repeat: no-repeat;
     background-size: cover;
 }

@@ -65,7 +65,7 @@ function ContactUs() {
 
   return (
     <>
-      <PagesHeader currentRoute={"ارتباط با ما"} />
+      <PagesHeader currentRoute={"ارتباط با ما"} bg={'/assets/images/photo_2024-09-13_10-02-10.jpg'}/>
       <iframe
         className="mb-10"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12950.809955302842!2d51.364098807378454!3d35.75811661099663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0798050e5be3%3A0xcbf7426c83471fd1!2sShahrak-e%20Gharb%2C%20District%202%2C%20Tehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2suk!4v1718741400225!5m2!1sen!2suk"

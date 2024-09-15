@@ -36,11 +36,11 @@ const Pagination = ({
         onClick={handlePrevGroup}
         disabled={currentGroup === 0}
         className=" px-4 py-2 text-white mx-1 justify-center"
-        style={{ color : 'white' ,
-          backgroundColor: '#F14D5D' , border: '1px solid #eef0f6', borderRadius : '5px' ,     height: '50px',
+        style={{ color : '#fff' ,
+          background : "var(--color-primary)" , border: '1px solid #eef0f6', borderRadius : '5px' ,     height: '50px',
           width: '50px'}}
       >
-       <i class="fa-solid fa-angles-left"></i>
+       <i className="fa-solid fa-angles-left text-white"></i>
       </button>
 
       {/* نمایش صفحات از startPage تا endPage */}
@@ -49,9 +49,9 @@ const Pagination = ({
           key={page}
           onClick={() => handlePageClick(page)}
           className={`relative pagination justify-center z-10 inline-flex items-center px-4 py-2 text-sm font-semibold mx-1 ${
-            currentPage === page ? 'active  text-white'  : ''
+            currentPage === page ? 'active  text-white bg-main'  : ''
           }`}
-          style={{border: '1px solid #eef0f6', borderRadius : '5px' , height: '50px',
+          style={{border: '1px solid #eef0f6' ,borderRadius : '5px' , height: '50px',
             width: '50px'}}
         >
           {page}
@@ -64,10 +64,10 @@ const Pagination = ({
         disabled={endPage === totalPages}
         className=" px-4 py-2 text-white mx-1 justify-center"
         style={{ color : 'white' ,
-          backgroundColor: '#F14D5D', border: '1px solid #eef0f6', borderRadius : '5px' , height: '50px',
+          backgroundColor: 'var(--color-primary)', border: '1px solid #eef0f6', borderRadius : '5px' , height: '50px',
           width: '50px'}}
       >
-         <i class="fa-solid fa-angles-right"></i>
+         <i className="fa-solid fa-angles-right text-white"></i>
       </button>
     </div>
   );

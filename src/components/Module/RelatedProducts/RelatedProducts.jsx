@@ -45,7 +45,7 @@ function RelatedProducts({productSlug}) {
                 <div
                   className={`text-center card flex flex-col`}
                 >
-                  <Link to={"/"}>
+                  <Link to={`/products/${product.slug}`}>
                     <img
                       src={product.baner}
                       alt=""

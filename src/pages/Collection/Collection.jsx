@@ -21,9 +21,10 @@ function Collection() {
     } , [])
 
 
+
   return (
     <>
-     <PagesHeader currentRoute={'کالکشن '} />
+     <PagesHeader currentRoute={'کالکشن '} bg={'/assets/images/bandeau-access-2021-desktop.jpg'} />
       <div className='container mx-auto px-20 my-24'>
       <div className='grid lg:grid-cols-4 justify-center gap-5'>
         {

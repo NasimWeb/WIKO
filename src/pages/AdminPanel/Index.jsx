@@ -66,8 +66,8 @@ function Index() {
                 <img
                   src={
                     collapsed
-                      ? "assets/images/Screenshot 2024-07-13 142957.png"
-                      : "assets/logo.svg"
+                      ? "/assets/images/Screenshot 2024-07-13 142957.png"
+                      : "/assets/logo.svg"
                   }
                   className={`${collapsed ? "w-12 pl-5" : " w-16"}`}
                   alt=""

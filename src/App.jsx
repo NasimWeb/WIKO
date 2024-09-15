@@ -207,6 +207,16 @@ useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
    }
 
+   const { pathname } = useLocation();
+
+   
+   useEffect(() => {
+     window.scrollTo(0, 0);
+   }, [pathname]);
+
+
+
+
   return (
     <>
       {loading ? (

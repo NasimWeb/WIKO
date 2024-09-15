@@ -32,8 +32,12 @@ function EditCategory() {
 
   const handleChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
-    setCategoryImage(newFileList[0].originFileObj);
+    if (newFileList.length > 0) {
+      setCategoryImage(newFileList[0].originFileObj);
+    }
   };
+
+
 
   const props = {
     onRemove: (file) => {
@@ -46,6 +50,7 @@ function EditCategory() {
     },
     beforeUpload: (file) => {
       setFileList([file]);
+      setCategoryImage(file);
       return false;
     },
     fileList,

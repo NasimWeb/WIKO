@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 function EditMenu() {
   const [title, setTitle] = useState();
   const [link, setLink] = useState();
+  const [hasSubMenus, setHasSubMenu] = useState();
   const [allMenu, setAllMenu] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -31,11 +32,17 @@ function EditMenu() {
 
   useQuery("Menus", fetchMenus);
 
+
   useEffect(() => {
     const mainMenu = allMenu?.find((menu) => menu.id === +menuId);
     setTitle(mainMenu?.title);
     setLink(mainMenu?.link);
+    setHasSubMenu(mainMenu?.sub_menu)
   }, [allMenu]);
+
+  
+ 
+  
 
   const navigate = useNavigate();
 
@@ -50,6 +57,7 @@ function EditMenu() {
       body: JSON.stringify({
         title: title,
         link: link,
+        sub_menu : hasSubMenus
       }),
     }).then((res) => {
       if (res.ok) {
@@ -64,6 +72,8 @@ function EditMenu() {
       }
     });
   });
+
+
 
   return (
     <React.Fragment>
@@ -102,6 +112,16 @@ function EditMenu() {
                   </Form.Item>
                 </Col>
               </Row>
+              <Row className="mt-5">
+            <Col span={11}>
+                <Form.Item>
+                  <div className="flex items-center gap-2">
+                    <label htmlFor="title">HasSubmenu</label>
+                    <input checked={hasSubMenus} onChange={e => setHasSubMenu(e.target.checked)} type="checkbox" name="" id="" />
+                  </div>
+                </Form.Item>
+              </Col>
+            </Row>
               <Button className="mt-10" type="primary" onClick={editMenu}>
                 save
               </Button>

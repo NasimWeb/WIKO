@@ -57,6 +57,7 @@ function EditSubCategory() {
     },
     beforeUpload: (file) => {
       setFileList([file]);
+      setImage(file);
       return false;
     },
     fileList,

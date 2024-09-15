@@ -98,6 +98,7 @@ function BlogEdit() {
     },
     beforeUpload: (file) => {
       setFileList([file]);
+      setBlogImg(file);
       return false;
     },
     fileList,

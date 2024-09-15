@@ -96,7 +96,7 @@ function LoginAdmin({ children }) {
                 <div className="container mx-auto flex px-5 justify-center items-center">
                   <div className="form-container text-center">
                     <img
-                      src="/src/assets/images/logo.svg"
+                      src="/assets/logo.svg"
                       style={{ width: "100px", maxWidth: "100%" }}
                       className="mx-auto mb-10"
                       alt=""

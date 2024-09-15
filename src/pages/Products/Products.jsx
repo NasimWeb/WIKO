@@ -8,6 +8,7 @@ import { Modal } from "antd";
 import extractPlainText from "../../Hooks/extractPlainText";
 import basketCart from "../../Contexts/basketCartContext";
 import { setCookie } from "../../Funcs/setCookie";
+import Pagination from "../../Hooks/pagination";
 
 function Products() {
   const [categories, setCategories] = useState([]);
@@ -49,6 +50,8 @@ function Products() {
   }
 
   useQuery("Products", fetchData);
+
+  
 
   const filterProducts = (slug) => {
 
@@ -137,14 +140,22 @@ function Products() {
  const {mutate:postView} = useMutation( async (productId) => {
    const res =  await fetch(`https://wiko.pythonanywhere.com/content/add/view/${productId}/`)   
  })
+
+ const [currentPage , setCurrentPage] = useState(1)
+
+ const getCurrentPageItems = () => {
+  const startIndex = (currentPage - 1) * 6
+  const endIndex = startIndex + 6
+  const items = products?.slice(startIndex,endIndex)
+  return items
+ }
  
 
 
- 
 
   return (
     <>
-      <PagesHeader currentRoute={"فروشگاه"} />
+      <PagesHeader currentRoute={"فروشگاه"} bg={'/assets/images/photo_2024-09-13_10-19-45.jpg'}/>
       <div className="container mx-auto px-20 my-10">
         <div className="grid xl:grid-cols-custom gap-10">
           <div className="sidebar hidden xl:block">
@@ -400,7 +411,7 @@ function Products() {
                       </div>
                     );
                   })
-                : products?.map((product) => {
+                : getCurrentPageItems()?.map((product) => {
                     return (
                       <div
                         key={product?.slug}
@@ -451,6 +462,7 @@ function Products() {
                             </Link>
                           </div>
                         </div>
+                      
                         {gridViewType === "row" ? (
                           <div className="flex flex-col lg:flex-row gap-5 lg:gap-5 items-baseline">
                             <div className="flex flex-col">
@@ -473,6 +485,7 @@ function Products() {
                               </button>
                             </div>
                           </div>
+                         
                         ) : (
                           <>
                             <div className="product-title font-bold">
@@ -487,6 +500,12 @@ function Products() {
                     );
                   })}
             </div>
+                 <div className="w-full">
+                 {
+                    getCurrentPageItems().length > 0 && 
+                    <Pagination totalItems={products?.length -  1} itemsPerPage={6} pagesPerGroup={5}  currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                  }
+                 </div>
           </div>
         </div>
       </div>

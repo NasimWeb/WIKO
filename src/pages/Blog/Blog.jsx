@@ -3,6 +3,7 @@ import PagesHeader from "../../components/Module/PagesHeader/PagesHeader";
 import BlogBox from "../../components/Template/Blog/BlogBox/BlogBox";
 import {  useState } from "react";
 import { useQuery } from "react-query";
+import Pagination from "../../Hooks/pagination";
 
 
 function Blog() {
@@ -24,15 +25,23 @@ function Blog() {
  
   useQuery("Blogs", allBlogs);
 
+  const [currentPage , setCurrentPage] = useState(1)
+
+  const getCurrentPageItems = () => {
+   const startIndex = (currentPage - 1) * 6
+   const endIndex = startIndex + 6
+   const items = blogs?.slice(startIndex,endIndex)
+   return items
+  }
 
 
   return (
     <div>
-      <PagesHeader currentRoute={"بلاگ"} />
+      <PagesHeader currentRoute={"بلاگ"}   bg={'/assets/images/bandeau-access-2021-desktop.jpg'}/>
       <div className="container mx-auto px-5 my-24">
         <div className="grid lg:grid-cols-3 gap-5">
-          {blogs &&
-            blogs.map((blog) => {
+          {getCurrentPageItems()?.length > 0 &&
+            getCurrentPageItems().map((blog) => {
               return (
                 <div key={blog.id}>
                   <BlogBox {...blog} />
@@ -40,6 +49,12 @@ function Blog() {
               );
             })}
         </div>
+        {
+          getCurrentPageItems()?.length > 0 && 
+       <div className="flex justify-center">
+       <Pagination totalItems={blogs.length - 1} itemsPerPage={6} pagesPerGroup={5} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+       </div>
+        }
       </div>
     </div>
   );

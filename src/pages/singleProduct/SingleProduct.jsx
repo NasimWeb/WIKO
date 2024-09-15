@@ -101,7 +101,7 @@ function SingleProduct() {
   };
 
   const fetchComments = async () => {
-    await fetch("https://wiko.pythonanywhere.com/panel/comments/", {
+    await fetch(`http://Wiko.pythonanywhere.com/options/comments/products/${mainProduct?.id}/`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -109,7 +109,6 @@ function SingleProduct() {
     }).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          console.log(data);
           setComments(data);
         });
       } else {
@@ -121,6 +120,7 @@ function SingleProduct() {
   useQuery("Comments", fetchComments);
 
  
+ 
   
   
 
@@ -130,6 +130,7 @@ function SingleProduct() {
         currentRoute={data?.title}
         prevRoute={"محصولات"}
         prevRouteLink="/products"
+        bg={'/assets/images/bandeau-access-2021-desktop.jpg'}
       />
       <div className="container mx-auto px-5">
         <div className="grid lg:grid-cols-2 gap-3 my-10">
