@@ -49,7 +49,8 @@ function Products() {
     }
   }
 
-  useQuery("Products", fetchData);
+ const  {data} = useQuery("Products", fetchData);
+
 
   
 

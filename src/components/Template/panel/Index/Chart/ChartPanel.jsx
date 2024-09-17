@@ -1,13 +1,19 @@
 
 import {  useState } from "react";
 import Chart from "react-apexcharts";
+import { useQuery } from "react-query";
 
 function ChartPanel({title}) {
+
+  const [products , setProducts] = useState()
 
   const [series , setSeries] = useState([
    { name: "Jan", 
     data: [30, 40, 45, 50, 49, 60, 70, 91]}
   ])
+
+
+  
 
   const [options,setOptions] = useState({
     chart: {

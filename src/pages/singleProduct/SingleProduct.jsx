@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import PagesHeader from "../../components/Module/PagesHeader/PagesHeader";
 import RelatedProducts from "../../components/Module/RelatedProducts/RelatedProducts";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./SingleProducts.css";
 import "swiper/css";
@@ -10,9 +10,8 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import extractPlainText from "../../Hooks/extractPlainText";
 import { Alert, Modal } from "antd";
-
 import { FreeMode, Navigation, Thumbs, Zoom } from "swiper/modules";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import basketCart from "../../Contexts/basketCartContext";
 import { setCookie } from "../../Funcs/setCookie";
 import { CommentOutlined, UserOutlined } from "@ant-design/icons";
@@ -20,33 +19,22 @@ import authContext from "../../Contexts/authContext";
 
 function SingleProduct() {
   const { productSlug } = useParams();
-  const [mainProduct, setMainProduct] = useState([]);
   const [ProductActive, setProductActive] = useState("details");
   const [message, setMessage] = useState();
   const [comments, setComments] = useState([]);
 
-  async function fetchData() {
-    const response = await fetch(
-      `https://wiko.pythonanywhere.com/content/product/${productSlug}`
-    );
-    if (response.ok) {
-      const data = await response.json();
-      setMainProduct(data);
-      return data;
-    } else {
-      console.Error();
-    }
-  }
+ 
 
-  const queryClient = useQueryClient();
 
-  const { data } = useQuery(["singleProduct", productSlug], fetchData, {
-    initialData: () => {
-      const products = queryClient.getQueryData(["Products"]);
-      const product = products?.find((product) => product.slug === productSlug);
-      return product;
-    },
-  });
+
+  const { data } = useQuery(["singleProduct", productSlug], ()  => 
+  fetch(`https://wiko.pythonanywhere.com/content/product/${productSlug}`).then(res => 
+    res.json()
+  )
+  );
+
+  
+  
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
@@ -60,7 +48,6 @@ function SingleProduct() {
 
   const AddToCard = async (event) => {
     event.preventDefault();
-
     if (basket) {
       const existingProduct = basket?.find((item) => item.slug === productSlug);
       if (existingProduct) {
@@ -75,33 +62,16 @@ function SingleProduct() {
     setCookie("basketCart", JSON.stringify(basket), 365 * 100);
   };
 
-  const SendComment = async (event) => {
-    event.preventDefault();
+ 
 
-    await fetch(
-      `https://wiko.pythonanywhere.com/options/add/comment/${mainProduct?.id}/`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: message }),
-      }
-    ).then((res) => {
-      if (res.ok) {
-        Modal.success({
-          content: "پیام شما با موفقیت ارسال شد",
-        });
-        setMessage("");
-      } else {
-        console.log(res.statusText);
-      }
-    });
-  };
+
+  
 
   const fetchComments = async () => {
-    await fetch(`http://Wiko.pythonanywhere.com/options/comments/products/${mainProduct?.id}/`, {
+    
+   
+    
+    await fetch(`https://wiko.pythonanywhere.com/options/comment/products/${data?.id}/`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -117,11 +87,36 @@ function SingleProduct() {
     });
   };
 
-  useQuery("Comments", fetchComments);
+  const {refetch} =useQuery("Comments", fetchComments);
 
  
-   const {isLogedin} = useContext(authContext)
+ const {isLogedin} = useContext(authContext)
   
+
+ const SendComment = async (event) => {
+  event.preventDefault();
+  await fetch(
+    `https://wiko.pythonanywhere.com/options/add/comment/${data?.id}/`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message: message }),
+    }
+  ).then((res) => {
+    if (res.ok) {
+      Modal.success({
+        content: "پیام شما با موفقیت ارسال شد",
+      });
+      setMessage("");
+      refetch()
+    } else {
+      console.log(res.statusText);
+    }
+  });
+};
   
 
   return (
@@ -150,7 +145,7 @@ function SingleProduct() {
               className="mySwiper2"
              
             >
-              {mainProduct.galerys?.map((galery , index) => {
+              {data?.galerys?.map((galery , index) => {
                 return (
                   <SwiperSlide key={index}>
                     <div>
@@ -170,7 +165,7 @@ function SingleProduct() {
               modules={[FreeMode, Navigation, Thumbs, Zoom]}
               className="mySwiper"
             >
-              {mainProduct.galerys?.map((galery) => {
+              {data?.galerys?.map((galery) => {
                 return (
                   <SwiperSlide key={galery.id}>
                     <div>
@@ -184,17 +179,17 @@ function SingleProduct() {
 
           <div className="product-detail mt-20">
             <div className="product-detail__title font-bold text-3xl text-end">
-              {mainProduct.title}
+              {data?.title}
             </div>
             <div className="flex gap-2 flex-col mt-5 text-end">
               <p>
                 قیمت:{" "}
                 <span className="product-price font-bold">
-                  {mainProduct.price}
+                  {data?.price}
                 </span>
               </p>
               <p className=" ">
-                موجودی در انبار: {mainProduct.is_avalable ? "موجود" : "ناموجود"}
+                موجودی در انبار: {data?.is_avalable ? "موجود" : "ناموجود"}
               </p>
             </div>
             <div className="flex my-10 gap-5 justify-end">
@@ -271,7 +266,7 @@ function SingleProduct() {
           </ul>
         </div>
         <div className="tabs-content mt-5 py-5">
-          {extractPlainText(mainProduct?.body)}
+          {extractPlainText(data?.body)}
         </div>
         {
           isLogedin ? (
