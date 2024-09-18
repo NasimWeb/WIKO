@@ -15,6 +15,8 @@ import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 
 
+
+
 function EditCategory() {
   const { categoryId } = useParams();
   const [title, setTitle] = useState();
@@ -33,12 +35,12 @@ function EditCategory() {
   const handleChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
     if (newFileList.length > 0) {
-      setCategoryImage(newFileList[0].originFileObj);
+      setCategoryImage(newFileList[0].originFileObj); // ذخیره فایل در state
     }
   };
 
 
-
+  
   const props = {
     onRemove: (file) => {
       setFileList((prevFileList) => {
@@ -49,9 +51,9 @@ function EditCategory() {
       });
     },
     beforeUpload: (file) => {
-      setFileList([file]);
-      setCategoryImage(file);
-      return false;
+      setFileList([file]);  // ذخیره فایل در state بدون آپلود
+    setCategoryImage(file);
+    return false; // آپلود خودکار را متوقف می‌کند
     },
     fileList,
     onChange: handleChange,
@@ -74,7 +76,7 @@ function EditCategory() {
     }
   };
 
-  const { data, error, isLoading } = useQuery("Categories", fetchAllCategories);
+  const { data } = useQuery("Categories", fetchAllCategories);
 
   const mainCategory = data?.find((item) => item.id == categoryId);
 
@@ -82,6 +84,8 @@ function EditCategory() {
     setTitle(mainCategory?.title);
     setCategoryImage(mainCategory?.baner);
   }, [data]);
+
+
 
   const navigate = useNavigate();
 
@@ -91,6 +95,8 @@ function EditCategory() {
     const formData = new FormData();
 
     formData.append("title", title);
+
+    
 
     if (categoryImage instanceof File) {
       formData.append("baner", categoryImage);
@@ -111,6 +117,7 @@ function EditCategory() {
       if (res.ok) {
         setLoading(false);
         const data = await res.json();
+        console.log(data);
         message.success("category updated sucessfully");
         navigate(-1);
       } else {

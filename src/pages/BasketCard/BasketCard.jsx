@@ -82,7 +82,7 @@ function BasketCard() {
 
   return (
     <>
-      <PagesHeader currentRoute={"سبد خرید"} />
+      <PagesHeader currentRoute={"سبد خرید"} bg={'/assets/images/photo_2024-09-13_10-19-45.jpg'} />
       <div className="bg-white p-10 rounded-lg my-20">
         <div className="container mx-auto px-20">
           <div className="grid xl:grid-cols-userPanel gap-5">

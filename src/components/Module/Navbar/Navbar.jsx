@@ -157,6 +157,9 @@ function Navbar() {
                   <Link to="/faq">سوالات متداول</Link>
                 </li>
                 <li>
+                  <Link to='/basketCard'>سبد خربد</Link>
+                </li>
+                <li>
                   <Link to="/collection">کالکشن</Link>
                 </li>
               </ul>
