@@ -33,7 +33,7 @@ function AddCategory() {
       });
     },
     beforeUpload: (file) => {
-      setFileList([file]);
+      setFileList([file]); 
       return false;
     },
     fileList,
