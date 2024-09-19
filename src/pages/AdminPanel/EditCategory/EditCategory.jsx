@@ -34,10 +34,9 @@ function EditCategory() {
   const handleChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
     if (newFileList.length > 0) {
-      setCategoryImage(newFileList[0].originFileObj); // ذخیره فایل در state
+      setCategoryImage(newFileList[0].originFileObj); 
     }
   };
-
 
   
   const props = {
@@ -81,7 +80,6 @@ function EditCategory() {
 
   useEffect(() => {
     setTitle(mainCategory?.title);
-    setCategoryImage(mainCategory?.baner);
   }, [mainCategory]);
 
 
@@ -101,6 +99,7 @@ function EditCategory() {
         formData.append("baner", categoryImage);
       }
     
+     
 
     try {
       const res = await fetch(
@@ -137,7 +136,6 @@ function EditCategory() {
           <Spin size="large"></Spin>
         </div>
       )}
-
       <div className="bg-white p-5">
         <Row>
           <Col span={24}>
