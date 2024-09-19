@@ -16,7 +16,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 
-
 function EditCategory() {
   const { categoryId } = useParams();
   const [title, setTitle] = useState();
@@ -51,9 +50,9 @@ function EditCategory() {
       });
     },
     beforeUpload: (file) => {
-      setFileList([file]);  // ذخیره فایل در state بدون آپلود
+    setFileList([file]);  
     setCategoryImage(file);
-    return false; // آپلود خودکار را متوقف می‌کند
+    return false; 
     },
     fileList,
     onChange: handleChange,
@@ -83,25 +82,25 @@ function EditCategory() {
   useEffect(() => {
     setTitle(mainCategory?.title);
     setCategoryImage(mainCategory?.baner);
-  }, [data]);
+  }, [mainCategory]);
 
 
 
   const navigate = useNavigate();
 
   const EditMainCategory = async () => {
+
     setLoading(true);
 
     const formData = new FormData();
 
     formData.append("title", title);
 
+
+      if (categoryImage instanceof File) {
+        formData.append("baner", categoryImage);
+      }
     
-
-    if (categoryImage instanceof File) {
-      formData.append("baner", categoryImage);
-    }
-
 
     try {
       const res = await fetch(

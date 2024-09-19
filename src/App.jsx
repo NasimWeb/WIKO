@@ -167,16 +167,12 @@ useEffect(() => {
   }
 }, []);
 
-  useEffect(() => {
-    const handleLoad = () => {
-      setLoading(false); // Hide the loader once the page is fully loaded
-    };
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setLoading(false); 
+  }, 500); 
 
-    // Listen for the load event to ensure all resources have finished loading
-    window.addEventListener("load", handleLoad);
-
-    // Cleanup the event listener on component unmount
-    return () => window.removeEventListener("load", handleLoad);
+  return () => clearTimeout(timer); 
   }, []);
 
   const goToTop = useRef(null)
