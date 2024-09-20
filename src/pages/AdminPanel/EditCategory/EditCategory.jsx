@@ -79,7 +79,10 @@ function EditCategory() {
   const mainCategory = data?.find((item) => item.id == categoryId);
 
   useEffect(() => {
-    setTitle(mainCategory?.title);
+    if(!title && !categoryImage) {
+      setTitle(mainCategory?.title);
+      setCategoryImage(mainCategory?.baner)
+    }
   }, [mainCategory]);
 
 

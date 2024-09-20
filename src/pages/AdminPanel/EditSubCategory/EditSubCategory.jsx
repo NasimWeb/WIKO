@@ -9,6 +9,7 @@ function EditSubCategory() {
   const [loading, setLoading] = useState();
   const [title, setTitle] = useState();
   const [image, setImage] = useState();
+  const [newImage , setNewImage] = useState()
   const { subId } = useParams();
 
   const [fileList, setFileList] = useState([
@@ -37,13 +38,16 @@ function EditSubCategory() {
   const mainCategory = data?.find((item) => item.id == subId);
 
   useEffect(() => {
-    setTitle(mainCategory?.title);
-    setImage(mainCategory?.baner);
+    if(!title && !image) {
+      setTitle(mainCategory?.title);
+      setImage(mainCategory?.baner);
+    }
   }, [mainCategory]);
 
   const handleChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
     setImage(newFileList[0].originFileObj);
+    setNewImage(newFileList[0].originFileObj);
   };
 
   const props = {
@@ -70,8 +74,8 @@ function EditSubCategory() {
 
     formData.append("title", title);
 
-    if (image instanceof File) {
-      formData.append("baner", image);
+    if (newImage instanceof File) {
+      formData.append("baner", newImage);
     }
 
     await fetch(`https://wiko.pythonanywhere.com/panel/update/sub/category/${subId}/`, {
