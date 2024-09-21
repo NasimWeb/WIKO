@@ -1,4 +1,4 @@
-import { Col, message, Row } from "antd";
+import { Col, message, Row, Spin } from "antd";
 import { useState } from "react";
 import {  useParams } from "react-router-dom";
 
@@ -6,7 +6,7 @@ import {  useParams } from "react-router-dom";
 function AcountDetail() {
 
     const {userId} = useParams()
-
+    const [loading , setLoading] = useState(false)
     
     const {username , phone  , is_admin , password , user_id} = JSON.parse(localStorage.getItem('userInfo'))
    
@@ -16,6 +16,7 @@ function AcountDetail() {
 
 
       const editUser = async (e) => {
+        setLoading(true)
         e.preventDefault()
         await fetch(`https://wiko.pythonanywhere.com/panel/update/user/${userId}/`,{
           method : 'PUT',
@@ -30,6 +31,7 @@ function AcountDetail() {
           })
         }).then(res => {
           if(res.ok){
+            setLoading(false)
             localStorage.setItem('userInfo',JSON.stringify({
               username : usernamePanel ,
               phone : phonePanel ,
@@ -38,6 +40,7 @@ function AcountDetail() {
             }))
            return message.success('با موفقیت آپدیت شد ')
           }else {
+            setLoading(false)
             res.text().then(err => console.log(err)
             )
           }
@@ -45,6 +48,13 @@ function AcountDetail() {
       }
 
   return (
+
+    <>
+   {loading && (
+        <div className="overlay">
+          <Spin size="large" />
+        </div>
+      )}
     <div className="bg-white p-5 rounded-lg mt-10">
       <div className="xl:col-span-2 bg-white dark:bg-gray-800 p-4.5 rounded-2xl">
         <div
@@ -93,6 +103,7 @@ function AcountDetail() {
         </form>
       </div>
     </div>
+    </>
   );
 }
 
