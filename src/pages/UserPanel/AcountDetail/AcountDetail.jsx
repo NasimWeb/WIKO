@@ -17,7 +17,7 @@ function AcountDetail() {
 
       const editUser = async (e) => {
         e.preventDefault()
-        await fetch(`http://127.0.0.1:8000/panel/update/user/${userId}/`,{
+        await fetch(`https://wiko.pythonanywhere.com/panel/update/user/${userId}/`,{
           method : 'PUT',
           headers : {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
