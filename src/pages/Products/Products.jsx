@@ -156,7 +156,7 @@ function Products() {
 
   return (
     <>
-      <PagesHeader currentRoute={"فروشگاه"} bg={'/assets/images/photo_2024-09-13_10-19-45.jpg'}/>
+      <PagesHeader currentRoute={"فروشگاه"} bg={'/assets/images/pngtree-mobile-phone-promotion-season-carnival-colorful-banner-image_179703.jpg'}/>
       <div className="container mx-auto px-20 my-10">
         <div className="grid xl:grid-cols-custom gap-10">
           <div className="sidebar hidden xl:block">
@@ -170,7 +170,7 @@ function Products() {
                         className="cursor-pointer "
                         onClick={() => filterProducts(categoryProduct?.slug)}
                       >
-                        <p className="category-links">
+                        <p className="category-links text-lg">
                           {categoryProduct.title}
                         </p>
                       </div>
@@ -247,10 +247,10 @@ function Products() {
                     alt=""
                   />
                   <div className="flex flex-col gap-2">
-                    <p className="title-product font-bold">
+                    <p className="title-product text-lg font-bold">
                       <Link to={`/products/${product.slug}`}>{product?.title}</Link>
                     </p>
-                    <p className="pric-product font-bold">{product?.price}$</p>
+                    <p className="pric-product font-bold">{product?.price.toLocaleString()}</p>
                   </div>
                 </div>
                     )

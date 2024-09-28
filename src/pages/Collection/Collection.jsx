@@ -24,7 +24,7 @@ function Collection() {
 
   return (
     <>
-     <PagesHeader currentRoute={'کالکشن '} bg={'/assets/images/bandeau-access-2021-desktop.jpg'} />
+     <PagesHeader currentRoute={'کالکشن '} bg={'/assets/images/lovepik-taobao-tmall-e-commerce-banner-background-image_500603827.jpg'} />
       <div className='container mx-auto px-20 my-24'>
       <div className='grid lg:grid-cols-4 justify-center gap-5'>
         {

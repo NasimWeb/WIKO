@@ -124,7 +124,7 @@ function SingleBlog() {
               <ul className="mt-5 flex flex-col gap-3">
                 {allBlog &&
                   allBlog
-                    .slice()
+                    .slice(0,3)
                     .reverse()
                     .map((blog) => {
                       return (

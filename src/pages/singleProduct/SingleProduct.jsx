@@ -184,11 +184,11 @@ function SingleProduct() {
             <div className="flex gap-2 flex-col mt-5 text-end">
               <p>
                 قیمت:{" "}
-                <span className="product-price font-bold">
-                  {data?.price}
+                <span className="product-price text-lg font-bold">
+                  {data?.price.toLocaleString()}
                 </span>
               </p>
-              <p className=" ">
+              <p className=" text-xl">
                 موجودی در انبار: {data?.is_avalable ? "موجود" : "ناموجود"}
               </p>
             </div>
@@ -199,7 +199,7 @@ function SingleProduct() {
                   onSubmit={(event) => AddToCard(event)}
                 >
                   <button
-                    className="custom-btn"
+                    className="custom-btn text-xl"
                     href="/collection"
                     title="Shop the collection"
                   >
@@ -208,7 +208,7 @@ function SingleProduct() {
                 </form>
               </div>
             </div>
-            <div className="share">
+            <div className="share text-xl">
               <ul className="flex gap-3 justify-end">
                 <span className="font-bold ">اشتراک گذاری:</span>
                 <li>
@@ -256,7 +256,7 @@ function SingleProduct() {
               onClick={() => setProductActive("details")}
             >
               <li
-                className={`font-bold text-lg products-tabs ${
+                className={`font-bold text-3xl products-tabs ${
                   ProductActive === "details" ? "active" : ""
                 }`}
               >
@@ -265,7 +265,7 @@ function SingleProduct() {
             </Link>
           </ul>
         </div>
-        <div className="tabs-content mt-5 py-5">
+        <div className="tabs-content  mt-5 py-5">
           {extractPlainText(data?.body)}
         </div>
         {
@@ -315,7 +315,7 @@ function SingleProduct() {
         </div>
 
           ) : (
-              <Alert message="لطفا اول ثبت نام کنید و سپس مجاز به کامنت گذاشتن هستید" type="warning" />
+              <Alert className="text-end" message="لطفا اول ثبت نام کنید و سپس مجاز به کامنت گذاشتن هستید" type="warning" />
           )
         }
         <hr />

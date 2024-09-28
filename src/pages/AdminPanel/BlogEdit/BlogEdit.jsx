@@ -33,7 +33,7 @@ function BlogEdit() {
 
   useEffect(() => {
     async function mainBlog() {
-      await fetch(`http://127.0.0.1:8000/content/blog/${blogSlug}`).then(
+      await fetch(`https://wiko.pythonanywhere.com/content/blog/${blogSlug}`).then(
         (res) => {
           if (res.ok) {
             return res.json().then((data) => {
@@ -53,7 +53,7 @@ function BlogEdit() {
   }, []);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/panel/users/", {
+    fetch("https://wiko.pythonanywhere.com/panel/users/", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -109,11 +109,8 @@ function BlogEdit() {
 
   useEffect(() => {
     async function getAllKeywords() {
-      await fetch("http://127.0.0.1:8000/panel/tags/", {
+      await fetch("https://wiko.pythonanywhere.com/panel/tags/", {
         method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
       }).then((res) => {
         if (res.ok) {
           return res.json().then((data) => setAllKeywords(data));
@@ -165,7 +162,7 @@ function BlogEdit() {
     blogsTagsId.forEach((id) => formData.append("tags", id));
 
     async function fetchEditBlog() {
-      await fetch(`http://127.0.0.1:8000/panel/update/blog/${mainBlog?.id}/`, {
+      await fetch(`https://wiko.pythonanywhere.com/panel/update/blog/${mainBlog?.id}/`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`,

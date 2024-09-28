@@ -25,7 +25,7 @@ function Faq() {
 
   return (
     <>
-      <PagesHeader currentRoute={"سوالات متداول"} bg={'/assets/images/bandeau-access-2021-desktop.jpg'} />
+      <PagesHeader currentRoute={"سوالات متداول"} bg={'/assets/images/360_F_471081691_aunLaGyG5xIIc54MHdig9gZ51FLpg66E.jpg'} />
       <div className="container px-20 mx-auto my-20 py-10">
         <div className="flex flex-col gap-4 ">
           {data?.map((faq) => {

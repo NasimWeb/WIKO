@@ -3,9 +3,9 @@ import './BreadCrumb.css'
 
 function BreadCrumb({ currentRoute, prevRoute , prevRouteLink }) {
   return (
-    <div className="flex justify-center gap-3 breadcrumb flex-wrap">
-      <Link to={"/"} >خانه</Link> <span >/</span>
-      {prevRoute && <Link  to={prevRouteLink}>{prevRoute}  / </Link>}
+    <div className="flex justify-center gap-3 text-lg breadcrumb flex-wrap">
+      <Link style={{color : '#fff', fontWeight : 800}} to={"/"} >خانه</Link> <span className="text-white" >/</span>
+      {prevRoute && <Link className="text-white"  to={prevRouteLink}>{prevRoute}  / </Link>}
       <p  className="active">{currentRoute}</p>
     </div>
   );

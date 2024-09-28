@@ -34,11 +34,14 @@ function Blog() {
    return items
   }
 
+ 
+  
+
 
   return (
     <div>
-      <PagesHeader currentRoute={"بلاگ"}   bg={'/assets/images/bandeau-access-2021-desktop.jpg'}/>
-      <div className="container mx-auto px-5 my-24">
+      <PagesHeader currentRoute={"بلاگ"}   bg={'/assets/images/0ba3d60362c7e6d256cfc1f37156bad9.jpg'}/>
+      <div className="container mx-auto px-5  my-24">
         <div className="grid lg:grid-cols-3 gap-5">
           {getCurrentPageItems()?.length > 0 &&
             getCurrentPageItems().map((blog) => {
@@ -50,8 +53,8 @@ function Blog() {
             })}
         </div>
         {
-          getCurrentPageItems()?.length > 0 && 
-       <div className="flex justify-center">
+        getCurrentPageItems()?.length > 0 && 
+       <div className="flex justify-center mt-5">
        <Pagination totalItems={blogs.length - 1} itemsPerPage={6} pagesPerGroup={5} currentPage={currentPage} setCurrentPage={setCurrentPage} />
        </div>
         }

@@ -6,7 +6,7 @@ import PagesHeader from '../../components/Module/PagesHeader/PagesHeader'
 function About() {
   return (
     <>
-    <PagesHeader currentRoute={'درباره ما'}  bg={'/assets/images/photo_۲۰۲۴-۰۹-۱۲_۱۹-۰۷-۴۱.jpg'}/>
+    <PagesHeader currentRoute={'درباره ما'}  bg={'/assets/images/360_F_218185587_P4zituDtWJOfClUKL6merI0BgLMIxoeC.jpg'}/>
     <WhyChooseUs />
     <MeetTeam />
     </>
