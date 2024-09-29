@@ -67,7 +67,7 @@ function Navbar() {
 
   const [isShowDrop, setIsShowDrop] = useState(false);
   const {basket } = useContext(basketCart);
-  const [productCount, setProductCount] = useState(basket.length);
+  const [productCount, setProductCount] = useState(basket?.length);
 
   useEffect(() => {
     setProductCount(basket.length)
@@ -231,7 +231,7 @@ function Navbar() {
             </ul>
           </div>
           <div className="searchbar relative lg:flex gap-7 hidden">
-            <Link>
+           
               {isLogedin ? (
                 <>
                   <i
@@ -267,7 +267,7 @@ function Navbar() {
               ) : (
                 <Link to={"/login"}>ثبت نام / ورود </Link>
               )}
-            </Link>
+            
             <Link to={""}>
               {" "}
               <i className="fa-solid fa-magnifying-glass text-xl"></i>

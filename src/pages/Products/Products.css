@@ -300,15 +300,7 @@
   color: var(--color-primary);
 }
 
-.row-image {
-  /* width: 200px; */
-  /* height: 201px; */
-}
 
-.row-card {
-  /* width: 200px; */
-  /* height: 70px; */
-}
 
 .col-flex {
   width: 602px;
@@ -365,4 +357,12 @@
 .input-number-increment {
   border-left: none;
   border-radius: 0 4px 4px 0;
+}
+
+.MuiSlider-track  {
+  background-color: var(--color-primary) !important;
+}
+
+.row-card {
+  height: unset !important;
 }

@@ -109,16 +109,15 @@ function Products() {
     fetchData();
   };
 
-  
 
   const {basket , setBasket} = useContext(basketCart);
 
 
   const AddToCard = async (productSlug) => {
-    
     const response = await fetch(
       `https://wiko.pythonanywhere.com/content/product/${productSlug}`
     );
+    let updatedBasket;
     if (response.ok) {
       const data = await response.json();
       if (basket) {
@@ -126,13 +125,15 @@ function Products() {
         if(existingProduct) {
           existingProduct.quantity = existingProduct.quantity || 0;
           existingProduct.quantity += 1;
+          updatedBasket = [...basket];
           success()
         }else {
-          setBasket([...basket,{...data,quantity : 1}])
+          updatedBasket = [...basket, { ...data, quantity: 1 }];
           success()
         }
       }
-      setCookie("basketCart", JSON.stringify(basket), 365 * 100);
+      setBasket(updatedBasket);
+      setCookie("basketCart", JSON.stringify(updatedBasket), 365 * 100);
     } else {
       console.Error();
     }
@@ -157,7 +158,7 @@ function Products() {
   return (
     <>
       <PagesHeader currentRoute={"فروشگاه"} bg={'/assets/images/pngtree-mobile-phone-promotion-season-carnival-colorful-banner-image_179703.jpg'}/>
-      <div className="container mx-auto px-20 my-10">
+      <div className="container mx-auto px-10 my-10">
         <div className="grid xl:grid-cols-custom gap-10">
           <div className="sidebar hidden xl:block">
             <p className="text-2xl titleSidebar">دسته بندی ها</p>
@@ -263,7 +264,7 @@ function Products() {
               <Link to={""}>
                 <img
                   className="advertisement-img w-full"
-                  src="./src/assets/images/5c644b08439de7915e2067141cb45ad6.jpg"
+                  src="./public/assets/images/5c644b08439de7915e2067141cb45ad6.jpg"
                   alt=""
                 />
               </Link>
@@ -418,7 +419,7 @@ function Products() {
                         key={product?.slug}
                         className={`flex ${
                           gridViewType === "row"
-                            ? "lg:flex-row lg:gap-0 gap-40 flex-wrap justify-between lg:flew-no-wrap flex-col "
+                            ? "lg:flex-row lg:gap-0 gap-40 flex-wrap justify-between lg:flex-nowrap flex-col "
                             : "flex-col"
                         } text-center `}
                       >
@@ -467,7 +468,7 @@ function Products() {
                         {gridViewType === "row" ? (
                           <div className="flex flex-col lg:flex-row gap-5 lg:gap-5 items-baseline">
                             <div className="flex flex-col">
-                              <div className="product-title font-bold text-2xl">
+                              <div className="product-title font-bold text-lg" style={{textWrap : 'wrap'}}>
                                 {product?.title}
                               </div>
                               <div className="product-price">
@@ -477,14 +478,14 @@ function Products() {
                                 {extractPlainText(product?.body)}
                               </div>
                             </div>
-                            <div className="btns flex flex-col gap-3 justify-center">
+                            {/* <div className="btns flex flex-col gap-3 justify-center">
                               <button className="btn-products ">
                                 جزییات محصول
                               </button>
                               <button className="btn-products ">
                                 نمایش جزییات
                               </button>
-                            </div>
+                            </div> */}
                           </div>
                          
                         ) : (

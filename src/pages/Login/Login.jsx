@@ -148,7 +148,7 @@ function Login() {
 
   return (
     <>
-      <PagesHeader currentRoute={"ورود"} bg={'/assets/images/bandeau-access-2021-desktop.jpg'}/>
+      <PagesHeader currentRoute={"ورود"} bg={'/assets/images/pngtree-blue-fluid-gradient-jingdong-good-things-festival-e-commerce-banner-image_178041.jpg'}/>
       <div className="container mx-auto ">
         <ToastContainer theme="dark" autoClose={2000} />
         <div

@@ -58,8 +58,8 @@ function RelatedProducts({productSlug}) {
         {
          similarProducts && similarProducts.map(product => {
             return (
-              <div key={product.id}>
-              <SwiperSlide >
+              
+              <SwiperSlide key={product.id} >
               <div
                 className={` flex-col text-center `}
               >
@@ -102,7 +102,7 @@ function RelatedProducts({productSlug}) {
                
               </div>
               </SwiperSlide>
-              </div>
+              
             )
           })
         }

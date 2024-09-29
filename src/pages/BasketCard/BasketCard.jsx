@@ -20,6 +20,9 @@ function BasketCard() {
     });
   };
 
+  console.log(basket);
+  
+
   const onLoadMore = () => {
     setLoading(true);
     setList(
@@ -82,9 +85,9 @@ function BasketCard() {
 
   return (
     <>
-      <PagesHeader currentRoute={"سبد خرید"} bg={'/assets/images/photo_2024-09-13_10-19-45.jpg'} />
+      <PagesHeader currentRoute={"سبد خرید"} bg={'/assets/images/pngtree-blue-technology-sense-simple-gradient-line-banner-background-image_1509417.jpg'} />
       <div className="bg-white p-10 rounded-lg my-20">
-        <div className="container mx-auto px-20">
+        <div className="container mx-auto px-10">
           <div className="grid xl:grid-cols-userPanel gap-5">
             <section>
               <List
@@ -114,7 +117,7 @@ function BasketCard() {
                       <List.Item.Meta
                         avatar={<Avatar src={item.baner} />}
                         title={<Link>نام محصول</Link>}
-                        description={item.price}
+                        description={item.title}
                       />
                       <List.Item.Meta
                         title={<Link>قیمت محصول</Link>}
@@ -125,6 +128,10 @@ function BasketCard() {
                         description={
                           item.is_avalable === true ? "موجود" : "موجود نیست"
                         }
+                      />
+                      <List.Item.Meta
+                        title={<Link>  تعداد محصول</Link>}
+                        description={item.quantity}
                       />
                     </Skeleton>
                   </List.Item>

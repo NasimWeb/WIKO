@@ -32,10 +32,12 @@ function App() {
   const [userInfo, setUserInfo] = useState(userInfoLocalStorage);
   const [loading, setLoading] = useState(true);
   const [basket, setBasket] = useState(() => {
-    const cookieValue = getCookie('basketCart');
+  const cookieValue = getCookie('basketCart');
     try {
       return cookieValue ? JSON.parse(cookieValue) : [];
     } catch (e) {
+      console.log(e);
+      
       console.error('Invalid JSON in basketCart cookie:', e);
       return [];
     }

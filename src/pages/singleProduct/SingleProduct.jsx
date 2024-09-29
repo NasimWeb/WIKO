@@ -25,16 +25,13 @@ function SingleProduct() {
 
  
 
-
-
   const { data } = useQuery(["singleProduct", productSlug], ()  => 
   fetch(`https://wiko.pythonanywhere.com/content/product/${productSlug}`).then(res => 
     res.json()
   )
   );
 
-  
-  
+
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
@@ -48,44 +45,50 @@ function SingleProduct() {
 
   const AddToCard = async (event) => {
     event.preventDefault();
+    let updatedBasket;
     if (basket) {
       const existingProduct = basket?.find((item) => item.slug === productSlug);
       if (existingProduct) {
         existingProduct.quantity = existingProduct.quantity || 0;
         existingProduct.quantity += 1;
+        updatedBasket = [...basket]
         success();
       } else {
-        setBasket([...basket, { ...data, quantity: 1 }]);
+        updatedBasket = [...basket, {...data, quantity: 1}];
         success();
       }
+      setBasket(updatedBasket)
+      setCookie("basketCart", JSON.stringify(updatedBasket), 365 * 100);
     }
-    setCookie("basketCart", JSON.stringify(basket), 365 * 100);
   };
 
  
-
-
-  
-
   const fetchComments = async () => {
+
+    const token = localStorage.getItem('accessToken')
+
+    if(!token){
+      console.log('you must login to see comments');
+      
+    } else  {
+      await fetch(`https://wiko.pythonanywhere.com/options/comment/products/${data?.id}/`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }).then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            setComments(data);
+          });
+        } else {
+          res.text().then((err) => console.error(err));
+        }
+      });
+    }
     
-   
-    
-    await fetch(`https://wiko.pythonanywhere.com/options/comment/products/${data?.id}/`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then((res) => {
-      if (res.ok) {
-        res.json().then((data) => {
-          setComments(data);
-        });
-      } else {
-        res.text().then((err) => console.error(err));
-      }
-    });
   };
+ 
 
   const {refetch} =useQuery("Comments", fetchComments);
 
