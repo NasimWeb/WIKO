@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import authContext from "../../../Contexts/authContext";
 import basketCart from "../../../Contexts/basketCartContext";
-import logo from '/assets/logo.svg';
+import logo from "/assets/logo.svg";
 import { useQuery } from "react-query";
 
 function Navbar() {
   const navbar = useRef();
   const { isLogedin, logout } = useContext(authContext);
+
+  const [isActiveBar, setIsActiveBar] = useState(false);
 
   useEffect(() => {
     window.addEventListener("scroll", fixedNavbar);
@@ -31,12 +33,14 @@ function Navbar() {
 
   useEffect(() => {
     async function fetchData() {
-      await fetch("https://wiko.pythonanywhere.com/content/categorys").then((res) => {
-        if (res.ok) {
-          return res.json().then((categories) => setCategories(categories));
+      await fetch("https://wiko.pythonanywhere.com/content/categorys").then(
+        (res) => {
+          if (res.ok) {
+            return res.json().then((categories) => setCategories(categories));
+          }
+          return res.text().then((err) => console.error(err));
         }
-        return res.text().then((err) => console.error(err));
-      });
+      );
     }
     fetchData();
   }, []);
@@ -47,8 +51,7 @@ function Navbar() {
     dropdownmenu.current?.addEventListener("mouseout", mouseOut);
 
     function mouseOut() {
-      if(dropdownmenu) {
-
+      if (dropdownmenu) {
         dropdownmenu.current.style.display = "none";
       }
     }
@@ -66,33 +69,39 @@ function Navbar() {
   }, []);
 
   const [isShowDrop, setIsShowDrop] = useState(false);
-  const {basket } = useContext(basketCart);
+  const { basket } = useContext(basketCart);
   const [productCount, setProductCount] = useState(basket?.length);
 
   useEffect(() => {
-    setProductCount(basket.length)
-  },[basket])
-
-  
+    setProductCount(basket.length);
+  }, [basket]);
 
   const logOutUser = () => {
     logout();
   };
 
   const fetchMenus = async () => {
-   const res = await fetch("https://wiko.pythonanywhere.com/content/navbar/", {
+    const res = await fetch("https://wiko.pythonanywhere.com/content/navbar/", {
       method: "GET",
-    })
-    
-    const result = await res.json()
-    return result
+    });
+
+    const result = await res.json();
+    return result;
   };
 
   const { data } = useQuery("Menus", fetchMenus);
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
-  
-  
+  // Close menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location]);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <div ref={navbar} className=" navbar animate__animated ">
@@ -110,10 +119,17 @@ function Navbar() {
           </div>
 
           {/* Mobile Menu */}
+
           <div className="lg:hidden ml-5">
-            {/* <AlignLeftOutlined  /> */}
             <div className="menuButton">
-              <input type="checkbox" id="navcheck" role="button" title="menu" />
+              <input
+                type="checkbox"
+                id="navcheck"
+                role="button"
+                title="menu"
+                checked={isMenuOpen}
+                onChange={toggleMenu}
+              />
               <label htmlFor="navcheck" aria-hidden="true" title="menu">
                 <span className="burger right">
                   <span className="bar">
@@ -121,46 +137,64 @@ function Navbar() {
                   </span>
                 </span>
               </label>
-              <ul id="menu" className="menuNav">
+              <ul id="menu" className={`menuNav ${isMenuOpen ? "open" : ""}`}>
                 <li>
-                  <Link to="/">صفجه اصلی</Link>
+                  <Link to="/" onClick={() => setIsMenuOpen(false)}>
+                    صفحه اصلی
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/about">درباره ما</Link>
+                  <Link to="/about" onClick={() => setIsMenuOpen(false)}>
+                    درباره ما
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/contact">ارتباط با ما</Link>
+                  <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
+                    ارتباط با ما
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/blog">بلاگ</Link>
+                  <Link to="/blog" onClick={() => setIsMenuOpen(false)}>
+                    بلاگ
+                  </Link>
                 </li>
-                {
-                  isLogedin ? (
-                    <li>
-                      <Link to={`/userPanel/${
-                            JSON.parse(localStorage.getItem("userInfo"))?.user_id
-                          }`}>پنل کاربری</Link>
-                    </li>
-                  ) : (
+                {isLogedin ? (
+                  <li>
+                    <Link
+                      to={`/userPanel/${
+                        JSON.parse(localStorage.getItem("userInfo"))?.user_id
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      پنل کاربری
+                    </Link>
+                  </li>
+                ) : (
+                  <li>
+                    <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                      ثبت نام / لاگین
+                    </Link>
+                  </li>
+                )}
                 <li>
-                  <Link to="/login">ثبت نام / لاگین</Link>
-                </li>
-                  )
-                }
-                <li>
-
-                <Link  to={"/products"}>
-                 فروشگاه
-              </Link>
-                </li>
-                <li>
-                  <Link to="/faq">سوالات متداول</Link>
-                </li>
-                <li>
-                  <Link to='/basketCard'>سبد خربد</Link>
+                  <Link to="/products" onClick={() => setIsMenuOpen(false)}>
+                    فروشگاه
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/collection">کالکشن</Link>
+                  <Link to="/faq" onClick={() => setIsMenuOpen(false)}>
+                    سوالات متداول
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/basketCard" onClick={() => setIsMenuOpen(false)}>
+                    سبد خرید
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/collection" onClick={() => setIsMenuOpen(false)}>
+                    کالکشن
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -168,106 +202,109 @@ function Navbar() {
 
           <div className="menus hidden lg:flex">
             <ul className="flex gap-5">
-              {
-                data?.slice().reverse().map(link => {
-                  if(link.sub_menu) {
+              {data
+                ?.slice()
+                .reverse()
+                .map((link) => {
+                  if (link.sub_menu) {
                     return (
-                    <Link key={link.id} to={link.link}>
-                    <li className="relative drop">
-                      {link.title}
-                      <i className="fa-solid fa-chevron-down text-xs"></i>
-                      <div className="flex">
-                        <div className="categories flex">
-                          <div
-                            ref={dropdownmenu}
-                            className="grid gap-5 animate__animated animate__fadeInUp grid-cols-[400px,600px] dropdown-menu"
-                          >
-                            <div className="flex gap-3">
-                              {categories
-                                ? categories.map((category) => {
-                                    if (!category.is_sub) {
-                                      return (
-                                        <div key={category.slug} className="">
-                                          <div key={category.slug}>
-                                            <p className="text-l titleSidebar">
+                      <Link key={link.id} to={link.link}>
+                        <li className="relative drop">
+                          {link.title}
+                          <i className="fa-solid fa-chevron-down text-xs"></i>
+                          <div className="flex">
+                            <div className="categories flex">
+                              <div
+                                ref={dropdownmenu}
+                                className="grid gap-5 animate__animated animate__fadeInUp grid-cols-[400px,600px] dropdown-menu"
+                              >
+                                <div className="flex gap-3">
+                                  {categories
+                                    ? categories.map((category) => {
+                                        if (!category.is_sub) {
+                                          return (
+                                            <div
+                                              key={category.slug}
+                                              className=""
+                                            >
+                                              <div key={category.slug}>
+                                                <p className="text-l titleSidebar">
+                                                  {category.title}
+                                                </p>
+                                              </div>
+                                            </div>
+                                          );
+                                        }
+                                        return (
+                                          <p
+                                            key={category.id}
+                                            className="sidebarCateItem"
+                                          >
+                                            <Link to={"/"}>
                                               {category.title}
-                                            </p>
-                                          </div>
-                                        </div>
-                                      );
-                                    }
-                                    return (
-                                      <p
-                                        key={category.id}
-                                        className="sidebarCateItem"
-                                      >
-                                        <Link to={"/"}>{category.title}</Link>
-                                      </p>
-                                    );
-                                  })
-                                : ""}
+                                            </Link>
+                                          </p>
+                                        );
+                                      })
+                                    : ""}
+                                </div>
+                                <img
+                                  src="assets/images/accessories-home-3.jpg"
+                                  alt=""
+                                />
+                              </div>
                             </div>
-                            <img
-                              src="assets/images/accessories-home-3.jpg"
-                              alt=""
-                            />
                           </div>
-                        </div>
-                      </div>
-                    </li>
-                  </Link>
-
-                    )
-                  }else {
-                    return (
-                      <Link  key={link.id} to={link.link}>
-                      <li>{link.title}</li>
+                        </li>
                       </Link>
-                    )
+                    );
+                  } else {
+                    return (
+                      <Link key={link.id} to={link.link}>
+                        <li>{link.title}</li>
+                      </Link>
+                    );
                   }
-                })
-              }
-               
+                })}
             </ul>
           </div>
           <div className="searchbar relative lg:flex gap-7 hidden">
-           
-              {isLogedin ? (
-                <>
-                  <i
-                    className="fa-solid fa-user text-xl"
-                    onClick={() => setIsShowDrop(!isShowDrop)}
-                  ></i>
-                  <div
-                    className={`drop-menu animate__animated animate__fadeInUp ${
-                      isShowDrop ? "block" : ""
-                    }`}
-                  >
-                    <ul className="flex flex-col gap-2">
-                      <li>
-                        <Link
-                          to={`/userPanel/${
-                            JSON.parse(localStorage.getItem("userInfo"))?.user_id
-                          }`}
-                        >
-                          پنل کاربری
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={"/p-admin"}>پنل مدیریت</Link>
-                      </li>
-                      <li>
-                        <Link to={""} onClick={logOutUser}>
-                          خروج از حساب
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </>
-              ) : (
-                <Link to={"/login"}>ثبت نام / ورود </Link>
-              )}
-            
+            {isLogedin ? (
+              <>
+                <i
+                  className="fa-solid fa-user text-xl"
+                  onClick={() => setIsShowDrop(!isShowDrop)}
+                ></i>
+                <div
+                  className={`drop-menu animate__animated animate__fadeInUp ${
+                    isShowDrop ? "block" : ""
+                  }`}
+                >
+                  <ul className="flex flex-col gap-2">
+                    <li>
+                      <Link
+                        to={`/userPanel/${
+                          JSON.parse(localStorage.getItem("userInfo"))?.user_id
+                        }`}
+                      >
+                        پنل کاربری
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"/p-admin"}>پنل مدیریت</Link>
+                    </li>
+                    <li>
+                      <Link to={""} onClick={logOutUser}>
+                        خروج از حساب
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </>
+            ) : (
+              <Link to={"/login"}>ثبت نام / ورود </Link>
+            )}
+
             <Link to={""}>
               {" "}
               <i className="fa-solid fa-magnifying-glass text-xl"></i>
@@ -277,7 +314,11 @@ function Navbar() {
                 <i className="fa-solid fa-bag-shopping  text-xl cart-hover"></i>
                 <div className="drop-card animate__animated animate__fadeInUp">
                   {basket.length > 0 ? (
-                    <span >  محصول  {productCount.toLocaleString('fa-IR')} در کارت شما وجود دارد  </span>
+                    <span>
+                      {" "}
+                      محصول {productCount.toLocaleString("fa-IR")} در کارت شما
+                      وجود دارد{" "}
+                    </span>
                   ) : (
                     <span>کارت شما در حال حاضر خالی است </span>
                   )}
