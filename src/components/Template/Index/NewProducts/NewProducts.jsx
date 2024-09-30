@@ -94,7 +94,7 @@ function NewProducts({ title, desc }) {
                     <div className="product-title font-bold">
                       {product.title}
                     </div>
-                    <div className="product-price">{product.price}</div>
+                    <div className="product-price">{product.price.toLocaleString()}</div>
                   </div>
               </div>
               </SwiperSlide>
