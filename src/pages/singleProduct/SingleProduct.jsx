@@ -131,7 +131,7 @@ function SingleProduct() {
         bg={'/assets/images/bandeau-access-2021-desktop.jpg'}
       />
       <div className="container mx-auto px-5">
-        <div className="grid grid-cols-1  lg:grid-cols-[400px_minmax(900px,_1fr)] gap-3 my-10">
+        <div className="grid grid-cols-1  lg:grid-cols-[400px_minmax(700px,_1fr)] gap-3 my-10">
           <div>
             <Swiper
               style={{
